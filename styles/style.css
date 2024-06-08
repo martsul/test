@@ -655,11 +655,37 @@ main {
   }
 }
 
-@media (max-width: 436px) {
-  .header__advantages-text {
-    font: 400 8px/12px var(--font);
+@media (max-width: 474px) {
+  .header {
+    padding: 36px 20px;
+  }
+  
+  .header__title {
+    font: 700 19px/22.5px var(--font);
   }
 
+  .header__advantages {
+    gap: 8px;
+  }
+
+  .header__advantages-item {
+    flex-direction: column;
+    align-items: start;
+    width: 100%;
+  }
+
+  .header__advantages-text {
+    font: 400 13px/14.4px var(--font);
+  }
+
+  .header__advantages-img-container {
+    transform: scale(1);
+    position: relative;
+    left: -10px;
+  }
+}
+
+@media (max-width: 436px) {
   .content__contacts {
     min-width: 160px;
   }
