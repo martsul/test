@@ -86,11 +86,13 @@ setTimeout(() => {
 }, 3100);
 
 document.querySelector(".content__consultant").addEventListener("click", () => {
-  document.querySelector(".content__aside").style = "display: inline-block";
+  document.querySelector(".content__field").classList.add("content__field-curtain");
+  document.querySelector(".content__aside").classList.add("content__aside-on");
 });
 
 document.querySelector(".aside__close").addEventListener("click", () => {
-  document.querySelector(".content__aside").style = "display: none";
+  document.querySelector(".content__field").classList.remove("content__field-curtain");
+  document.querySelector(".content__aside").classList.remove("content__aside-on");
 });
 
 // Email
@@ -133,6 +135,7 @@ async function formSend(event) {
 
 
 // Scroll 
+
 const scrollField = document.querySelector(".content__field");
 let scrollPosition = 0;
 let canScroll;
@@ -145,3 +148,11 @@ scrollField.addEventListener("wheel", event => {
     scrollField.setAttribute("style", `top:${scrollPosition}px`)  
   }
 })
+
+// Curtain 
+
+console.log(window.innerWidth);
+if (window.innerWidth > 1023) {
+  document.querySelector(".content__field").classList.add("content__field-curtain");
+  document.querySelector(".content__aside").classList.add("content__aside-on");
+}

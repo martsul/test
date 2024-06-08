@@ -195,7 +195,11 @@ main {
   gap: 12px;
   width: 100%;
   position: relative;
-  transition: top .8s ease;
+  transition: top .8s ease, padding .4s cubic-bezier(.4, 0, .2, 1);
+}
+
+.content__field-curtain {
+  padding: 16px 423px 16px 36px;
 }
 
 .content__block-questions {
@@ -242,6 +246,7 @@ main {
   grid-template-columns: auto auto;
   border-radius: 16px 16px 0 0;
   overflow: hidden;
+  max-width: 768px;
 }
 
 .content__img-card {
@@ -249,7 +254,7 @@ main {
 }
 
 .content__img {
-  width: 382px;
+  width: 100%;
   height: 286px;
 }
 
@@ -476,12 +481,13 @@ main {
   background: #fff;
   height: 100%;
   width: 387px;
-  display: none;
   z-index: 2;
+  transform: translate(100%, 0);
+  transition: transform .4s cubic-bezier(.4, 0, .2, 1);
 }
 
 .content__aside-on {
-  display: inline-block;
+  transform: translateX(0);
 }
 
 .aside__header {
@@ -540,6 +546,10 @@ main {
 
   .header__advantages-text {
     font: 400 12px/16px var(--font);
+  }
+
+  .content__field-curtain {
+    padding: 16px 36px;
   }
 
   .content__img {
