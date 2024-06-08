@@ -529,6 +529,14 @@ main {
   color: #666;
 }
 
+.info {
+  font: 400 12px/16px var(--font);
+  color: #666;
+  width: 290px;
+  padding: 8px 25px;
+  display: none;
+}
+
 @media (max-width: 1100px) {
   .header__advantages-text {
     max-width: 185px;
@@ -589,6 +597,10 @@ main {
 
   .content__aside {
     width: 238px;
+  }
+
+  .info {
+    display: block;
   }
 }
 
