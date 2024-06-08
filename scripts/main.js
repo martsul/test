@@ -29,7 +29,6 @@ function animation() {
           e.querySelector(".content-time").innerHTML = `${time[0]}:${time[1]}`;
 
           e.classList.add("content__block-on");
-          // e.scrollIntoView();
         }, 800 * ++ind);
       });
 
@@ -45,10 +44,14 @@ function animation() {
           answerArr[iteration].querySelector(".content__answer").innerHTML =
             element.getAttribute("value");
 
-          answerArr[iteration].classList.add("content__block-on");
-          // answerArr[iteration].scrollIntoView();
-          iteration++;
-          animation();
+          setTimeout(() => {
+            answerArr[iteration].classList.add("content__block-on");
+            iteration++;
+
+            setTimeout(() => {
+              animation();
+            }, 600);
+          }, 600);
         });
       });
     } else if (questionArr[iteration].querySelector(".content__block-btn")) {
@@ -72,10 +75,14 @@ function animation() {
             ".content-time"
           ).innerHTML = `${time[0]}:${time[1]}`;
 
-          answerArr[iteration].classList.add("content__block-on");
-          // answerArr[iteration].scrollIntoView();
-          iteration++;
-          animation();
+          setTimeout(() => {
+            answerArr[iteration].classList.add("content__block-on");
+            iteration++;
+
+            setTimeout(() => {
+              animation();
+            }, 600);
+          }, 600);
         });
     }
   }, 800);
@@ -86,13 +93,19 @@ setTimeout(() => {
 }, 3100);
 
 document.querySelector(".content__consultant").addEventListener("click", () => {
-  document.querySelector(".content__field").classList.add("content__field-curtain");
+  document
+    .querySelector(".content__field")
+    .classList.add("content__field-curtain");
   document.querySelector(".content__aside").classList.add("content__aside-on");
 });
 
 document.querySelector(".aside__close").addEventListener("click", () => {
-  document.querySelector(".content__field").classList.remove("content__field-curtain");
-  document.querySelector(".content__aside").classList.remove("content__aside-on");
+  document
+    .querySelector(".content__field")
+    .classList.remove("content__field-curtain");
+  document
+    .querySelector(".content__aside")
+    .classList.remove("content__aside-on");
 });
 
 // Email
@@ -121,38 +134,42 @@ async function formSend(event) {
       ".content-time"
     ).innerHTML = `${time[0]}:${time[1]}`;
 
-    answerArr[iteration].classList.add("content__block-on");
-    // answerArr[iteration].scrollIntoView();
-    console.log("Ok");
-
     setTimeout(() => {
-      document.location.href = "https://ya.ru/";
-    }, 5000);
+      answerArr[iteration].classList.add("content__block-on");
+
+      setTimeout(() => {
+        document.location.href = "https://ya.ru/";
+      }, 5000);
+    }, 200)
   } else {
-    console.log("error");
+    console.log("SEND EMAIL ERROR");
   }
 }
 
-
-// Scroll 
+// Scroll
 
 const scrollField = document.querySelector(".content__field");
 let scrollPosition = 0;
 let canScroll;
 
-scrollField.addEventListener("wheel", event => {
+scrollField.addEventListener("wheel", (event) => {
   canScroll = scrollField.offsetHeight - 645;
 
-  if ((scrollPosition > 0 || -event.deltaY > 0) && (scrollPosition < canScroll || -event.deltaY < 0)) {
+  if (
+    (scrollPosition > 0 || -event.deltaY > 0) &&
+    (scrollPosition < canScroll || -event.deltaY < 0)
+  ) {
     scrollPosition -= event.deltaY;
-    scrollField.setAttribute("style", `top:${scrollPosition}px`)  
+    scrollField.setAttribute("style", `top:${scrollPosition}px`);
   }
-})
+});
 
-// Curtain 
+// Curtain
 
 console.log(window.innerWidth);
 if (window.innerWidth > 1023) {
-  document.querySelector(".content__field").classList.add("content__field-curtain");
+  document
+    .querySelector(".content__field")
+    .classList.add("content__field-curtain");
   document.querySelector(".content__aside").classList.add("content__aside-on");
 }
