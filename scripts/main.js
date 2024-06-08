@@ -140,7 +140,7 @@ async function formSend(event) {
       setTimeout(() => {
         document.location.href = "https://ya.ru/";
       }, 5000);
-    }, 200)
+    }, 200);
   } else {
     console.log("SEND EMAIL ERROR");
   }
@@ -164,9 +164,29 @@ scrollField.addEventListener("wheel", (event) => {
   }
 });
 
+// Scroll-Swipe
+
+let touchStart;
+let touchIndex = 0
+
+scrollField.addEventListener("touchstart", (event) => {
+  canScroll = scrollField.offsetHeight - 645;
+
+  touchStart = event.touches[0].clientY;
+});
+
+scrollField.addEventListener("touchmove", (event) => {
+  touchIndex = touchStart - event.touches[0].clientY;
+
+  if ((scrollPosition > 0 || touchIndex > 0) && (scrollPosition < canScroll || touchIndex < 0)) {
+    scrollPosition += touchIndex;
+    console.log(scrollPosition);
+    scrollField.setAttribute("style", `top:${scrollPosition}px`);
+  }
+});
+
 // Curtain
 
-console.log(window.innerWidth);
 if (window.innerWidth > 1023) {
   document
     .querySelector(".content__field")
