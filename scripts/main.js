@@ -167,20 +167,21 @@ scrollField.addEventListener("wheel", (event) => {
 // Scroll-Swipe
 
 let touchStart;
-let touchIndex = 0
+let touchIndex = 0;
 
 scrollField.addEventListener("touchstart", (event) => {
   canScroll = scrollField.offsetHeight - 645;
-
   touchStart = event.touches[0].clientY;
 });
 
-scrollField.addEventListener("touchmove", (event) => {
-  touchIndex = touchStart - event.touches[0].clientY;
+scrollField.addEventListener("touchend", (event) => {
+  touchIndex = -(touchStart - event.changedTouches[0].clientY);
 
-  if ((scrollPosition > 0 || touchIndex > 0) && (scrollPosition < canScroll || touchIndex < 0)) {
+  if (
+    (scrollPosition > 0 || touchIndex > 0) &&
+    (scrollPosition < canScroll || touchIndex < 0)
+  ) {
     scrollPosition += touchIndex;
-    console.log(scrollPosition);
     scrollField.setAttribute("style", `top:${scrollPosition}px`);
   }
 });
